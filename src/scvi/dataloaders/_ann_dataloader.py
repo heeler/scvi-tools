@@ -105,7 +105,7 @@ class AnnDataLoader(DataLoader):
 
         self.kwargs = copy.deepcopy(kwargs)
 
-        if sampler is not None and distributed_sampler:
+        if not (isinstance(sampler, BatchDistributedSampler) and distributed_sampler):
             raise ValueError("Cannot specify both `sampler` and `distributed_sampler`.")
 
         # custom sampler for efficient minibatching on sparse matrices
