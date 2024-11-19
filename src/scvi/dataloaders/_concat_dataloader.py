@@ -40,6 +40,7 @@ class ConcatDataLoader(DataLoader):
         distributed_sampler: bool = True,
         **data_loader_kwargs,
     ):
+        print("ConcatDataset data_loader_kwargs:", data_loader_kwargs, flush=True)
         self.adata_manager = adata_manager
         self.dataloader_kwargs = data_loader_kwargs
         self.data_and_attributes = data_and_attributes
