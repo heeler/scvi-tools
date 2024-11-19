@@ -7,7 +7,7 @@ from scvi.data import AnnDataManager
 
 from ._ann_dataloader import AnnDataLoader
 
-import inspect
+import traceback
 import time
 
 
@@ -44,8 +44,9 @@ class ConcatDataLoader(DataLoader):
         **data_loader_kwargs,
     ):
         print("ConcatDataset data_loader_kwargs:", data_loader_kwargs, flush=True)
-        print(inspect.getouterframes( inspect.currentframe() )[1:], flush=True)
-        print(time.sleep(2))
+        stack_trace = ''.join(traceback.format_stack())
+        print(stack_trace)
+        time.sleep(2)
         self.adata_manager = adata_manager
         self.dataloader_kwargs = data_loader_kwargs
         self.data_and_attributes = data_and_attributes
