@@ -1,6 +1,7 @@
 import copy
 import logging
 
+import torch
 import numpy as np
 from torch.utils.data import (
     BatchSampler,
@@ -105,7 +106,7 @@ class AnnDataLoader(DataLoader):
 
         self.kwargs = copy.deepcopy(kwargs)
 
-        if distributed_sampler and sampler is not None and not isinstance(sampler, BatchDistributedSampler):
+        if distributed_sampler and sampler is not None and not isinstance(sampler, torch.utils.data.distributed.DistributedSampler):
             raise ValueError("Cannot specify both `sampler` and `distributed_sampler`.")
 
         # custom sampler for efficient minibatching on sparse matrices
