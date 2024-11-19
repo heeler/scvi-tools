@@ -37,7 +37,7 @@ class ConcatDataLoader(DataLoader):
         batch_size: int = 128,
         data_and_attributes: dict | None = None,
         drop_last: bool | int = False,
-        distributed_sampler: bool = True
+        distributed_sampler: bool = True,
         **data_loader_kwargs,
     ):
         self.adata_manager = adata_manager
