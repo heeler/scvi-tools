@@ -7,6 +7,8 @@ from scvi.data import AnnDataManager
 
 from ._ann_dataloader import AnnDataLoader
 
+import inspect
+
 
 class ConcatDataLoader(DataLoader):
     """DataLoader that supports a list of list of indices to load.
@@ -41,6 +43,7 @@ class ConcatDataLoader(DataLoader):
         **data_loader_kwargs,
     ):
         print("ConcatDataset data_loader_kwargs:", data_loader_kwargs, flush=True)
+        print(inspect.getouterframes( inspect.currentframe() )[1])
         self.adata_manager = adata_manager
         self.dataloader_kwargs = data_loader_kwargs
         self.data_and_attributes = data_and_attributes
