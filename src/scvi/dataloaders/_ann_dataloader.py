@@ -2,6 +2,7 @@ import copy
 import logging
 
 import numpy as np
+import traceback
 from torch.utils.data import (
     BatchSampler,
     DataLoader,
@@ -86,6 +87,13 @@ class AnnDataLoader(DataLoader):
         load_sparse_tensor: bool = False,
         **kwargs,
     ):
+        if sampler is not None or distributed_sampler is not None:
+            print(''.join(traceback.format_stack()))
+            if sampler:
+                print(f"sampler: {sampler}")
+            if distributed_sampler:
+                print(f"distributed_sampler: {distributed_sampler}")
+
         if indices is None:
             indices = np.arange(adata_manager.adata.shape[0])
         else:
