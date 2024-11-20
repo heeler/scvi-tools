@@ -99,6 +99,12 @@ class AnnDataLoader(DataLoader):
             data_and_attributes=data_and_attributes,
             load_sparse_tensor=load_sparse_tensor,
         )
+        print("AnnDataLoader:indices ", indices)
+        print("AnnDataLoader:data_and_attributes ", data_and_attributes)
+        print("AnnDataLoader:load_sparse_tensor ", load_sparse_tensor)
+        print("AnnDataLoader:self.dataset ", self.dataset)
+        print("AnnDataLoader:self.dataset ", self.dataset[0], flush=True)
+
         if "num_workers" not in kwargs:
             kwargs["num_workers"] = settings.dl_num_workers
         if "persistent_workers" not in kwargs:
