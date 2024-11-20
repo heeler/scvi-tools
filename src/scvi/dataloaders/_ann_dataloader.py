@@ -104,6 +104,7 @@ class AnnDataLoader(DataLoader):
         print("AnnDataLoader:load_sparse_tensor ", load_sparse_tensor)
         print("AnnDataLoader:self.dataset ", self.dataset)
         print("AnnDataLoader:self.dataset ", self.dataset[0], flush=True)
+        print("AnnDataLoader:self.dataset unroled ", {k: v.shape for k,v in self.dataset[0].items}, flush=True)
 
         if "num_workers" not in kwargs:
             kwargs["num_workers"] = settings.dl_num_workers
