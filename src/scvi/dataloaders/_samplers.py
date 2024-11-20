@@ -36,6 +36,8 @@ class BatchDistributedSampler(DistributedSampler):
         drop_dataset_tail: bool = False,
         **kwargs,
     ):
+        print("BatchDistributedSampler: kwargs", kwargs )
+        print("BatchDistributedSampler: dataset", dataset )
         super().__init__(dataset, drop_last=drop_dataset_tail, **kwargs)
         self.batch_size = batch_size
         self.drop_last_batch = drop_last  # drop_last already defined in parent
