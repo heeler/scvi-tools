@@ -447,11 +447,13 @@ class SemiSupervisedDataSplitter(pl.LightningDataModule):
         self.test_idx = indices_test.astype(int)
 
         if len(self._labeled_indices) != 0:
+            print("SemiSupervisedDataLoader instead of AnnDataloader",flush=True)
             self.data_loader_class = SemiSupervisedDataLoader
             dl_kwargs = {
                 "n_samples_per_label": self.n_samples_per_label,
             }
         else:
+            print("Actually also AnnDataloader",flush=True)
             self.data_loader_class = AnnDataLoader
             dl_kwargs = {}
 
@@ -459,6 +461,7 @@ class SemiSupervisedDataSplitter(pl.LightningDataModule):
 
     def train_dataloader(self):
         """Create the train data loader."""
+         print('Train_dataloader: ', self.data_loader_class, self.data_loader_kwargs)
         return self.data_loader_class(
             self.adata_manager,
             indices=self.train_idx,
@@ -470,6 +473,7 @@ class SemiSupervisedDataSplitter(pl.LightningDataModule):
 
     def val_dataloader(self):
         """Create the validation data loader."""
+        print('val_dataloader: ', self.val_idx, self.data_loader_class, self.data_loader_kwargs)
         if len(self.val_idx) > 0:
             return self.data_loader_class(
                 self.adata_manager,
