@@ -363,7 +363,13 @@ class AnnDataManager:
         )
         if indices is not None:
             # This is a lazy subset, it just remaps indices
+            print("AnnTorchDataset: len(dataset)", len(dataset))
+            print("AnnTorchDataset: dataset.adata.shape", dataset.adata.shape)
+            print("AnnTorchDataset: unrolled shapes", {k: v.shape for k,v in dataset[0].items()}, flush=True)
             dataset = Subset(dataset, indices)
+            print("AnnTorchDataset (after Subset): len(dataset)", len(dataset))
+            print("AnnTorchDataset (after Subset): dataset.adata.shape", dataset.adata.shape)
+            print("AnnTorchDataset (after Subset): unrolled shapes", {k: v.shape for k,v in dataset[0].items()}, flush=True)
         return dataset
 
     @staticmethod
