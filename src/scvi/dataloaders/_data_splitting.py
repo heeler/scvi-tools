@@ -461,7 +461,7 @@ class SemiSupervisedDataSplitter(pl.LightningDataModule):
 
     def train_dataloader(self):
         """Create the train data loader."""
-         print('Train_dataloader: ', self.data_loader_class, self.data_loader_kwargs)
+        print('Train_dataloader: ', self.data_loader_class, self.data_loader_kwargs)
         return self.data_loader_class(
             self.adata_manager,
             indices=self.train_idx,
