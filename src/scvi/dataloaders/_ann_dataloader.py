@@ -8,6 +8,7 @@ from torch.utils.data import (
     RandomSampler,
     Sampler,
     SequentialSampler,
+    DistributedSampler,
 )
 
 from scvi import settings
@@ -105,7 +106,7 @@ class AnnDataLoader(DataLoader):
 
         self.kwargs = copy.deepcopy(kwargs)
 
-        if sampler is not None and distributed_sampler:
+        if distributed_sampler and sampler is not None and not isinstance(sampler, DistributedSampler):
             raise ValueError("Cannot specify both `sampler` and `distributed_sampler`.")
 
         # custom sampler for efficient minibatching on sparse matrices
