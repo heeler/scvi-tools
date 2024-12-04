@@ -44,7 +44,10 @@ class BatchDistributedSampler(DistributedSampler):
         #     if redundant_key in kwargs:
         #         kwargs.pop(redundant_key)
 
-        super().__init__(dataset, drop_last=drop_dataset_tail, **kwargs)
+        super_allowed_keywords = ["num_replicas", "rank", "shuffle", "seed"]
+        super_kwargs = {k: v for k, v in kwargs.items() if k in super_allowed_keywords }
+
+        super().__init__(dataset, drop_last=drop_dataset_tail, **super_kwargs)
         self.batch_size = batch_size
         self.drop_last_batch = drop_last  # drop_last already defined in parent
 
