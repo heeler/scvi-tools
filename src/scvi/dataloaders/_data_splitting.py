@@ -396,7 +396,7 @@ class SemiSupervisedDataSplitter(pl.LightningDataModule):
         **kwargs,
     ):
         print("SemiSupervisedDataSplitter kwargs:")
-        for k, v in kwargs:
+        for k, v in kwargs.items():
             print(f"\t{k}: {v}")
         super().__init__()
         self.adata_manager = adata_manager
