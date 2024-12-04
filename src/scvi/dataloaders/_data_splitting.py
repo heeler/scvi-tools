@@ -395,6 +395,9 @@ class SemiSupervisedDataSplitter(pl.LightningDataModule):
         external_indexing: list[np.array, np.array, np.array] | None = None,
         **kwargs,
     ):
+        print("SemiSupervisedDataSplitter kwargs:")
+        for k, v in kwargs:
+            print(f"\t{k}: {v}")
         super().__init__()
         self.adata_manager = adata_manager
         self.train_size_is_none = not bool(train_size)
