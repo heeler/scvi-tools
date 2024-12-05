@@ -93,6 +93,7 @@ class SemiSupervisedDataLoader(ConcatDataLoader):
             batch_size=self._batch_size,
             data_and_attributes=self.data_and_attributes,
             drop_last=self._drop_last,
+            distributed_sampler=True,
         )
 
     def subsample_labels(self):
