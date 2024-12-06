@@ -70,6 +70,8 @@ class SemiSupervisedDataLoader(ConcatDataLoader):
                 self.labeled_locs.append(label_loc)
         labelled_idx = self.subsample_labels()
 
+        self.data_loader_kwargs = data_loader_kwargs
+
         super().__init__(
             adata_manager=adata_manager,
             indices_list=[self.indices, labelled_idx],
@@ -93,7 +95,7 @@ class SemiSupervisedDataLoader(ConcatDataLoader):
             batch_size=self._batch_size,
             data_and_attributes=self.data_and_attributes,
             drop_last=self._drop_last,
-            distributed_sampler=True,
+            **(self.data_loader_kwargs)
         )
 
     def subsample_labels(self):
