@@ -118,6 +118,7 @@ class AnnDataLoader(DataLoader):
                     batch_size=batch_size,
                     drop_last=drop_last,
                 )
+                print("AnnDataLoader::sampler = BatchSampler (not distributed)")
             else:
                 sampler = BatchDistributedSampler(
                     self.dataset,
@@ -127,6 +128,7 @@ class AnnDataLoader(DataLoader):
                     shuffle=shuffle,
                     # **kwargs,
                 )
+                print("AnnDataLoader::sampler = BatchDistributedSampler!")
             # do not touch batch size here, sampler gives batched indices
             # This disables PyTorch automatic batching, which is necessary
             # for fast access to sparse matrices
