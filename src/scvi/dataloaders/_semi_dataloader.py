@@ -54,6 +54,7 @@ class SemiSupervisedDataLoader(ConcatDataLoader):
 
         self.n_samples_per_label = n_samples_per_label
 
+        print(f"SSDL::samples_per_label => {self.n_samples_per_label}")
         labels_state_registry = adata_manager.get_state_registry(REGISTRY_KEYS.LABELS_KEY)
         labels = get_anndata_attribute(
             adata_manager.adata,
